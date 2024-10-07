@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Productos</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            table-layout: fixed;
+            width: 40%; /* Reduce aún más el ancho total de la tabla */
+        }
+
+        table, th, td {
+            border: 1px solid black;
+        }
+
+        th, td {
+            padding: 5px; /* Reduce el padding dentro de las celdas */
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        /* Ajusta los anchos de las columnas para que estén más cerca entre sí */
+        th:nth-child(1), td:nth-child(1) { /* ID */
+            width: 5%; /* Más estrecho */
+			text-align: center; 
+        }
+
+        th:nth-child(2), td:nth-child(2) { /* Nombre */
+            width: 10%;
+			text-align: center; 
+        }
+
+        th:nth-child(3), td:nth-child(3) { /* Descripción */
+            width: 15%;
+			text-align: center; 
+        }
+
+        th:nth-child(4), td:nth-child(4) { /* Cantidad */
+            width: 14%;
+			text-align: center; 
+        }
+
+        th:nth-child(5), td:nth-child(5) { /* Precio */
+            width: 10%;
+			text-align: center; 
+        }
+
+        th:nth-child(6), td:nth-child(6) { /* Acciones */
+            width: 20%;
+			text-align: center; /* Centrar la columna de acciones */
+        }
+		
+		td a {
+		          margin: 0 5px; /* Añadir un margen entre los enlaces */
+		      }
+    </style>
+</head>
+<body>
+    <h1>Lista de Productos</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Descripción</th>
+                <th>Cantidad</th>
+                <th>Precio</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="product : ${productList}">
+                <td th:text="${product.id}"></td>
+                <td th:text="${product.nombre}"></td>
+                <td th:text="${product.descripcion}"></td>
+                <td th:text="${product.cantidad}"></td>
+                <td th:text="${product.precio}"></td>
+                <td>
+                    <a th:href="@{/products/edit/{id}(id=${product.id})}">Editar</a> | 
+                    <a th:href="@{/products/delete/{id}(id=${product.id})}">Eliminar</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <a href="/products/new">Agregar Nuevo Producto</a>
+</body>
+</html>

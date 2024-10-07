@@ -1,0 +1,1 @@
+INDEX VERSION 1.134+C:\spring\inventory-management\.metadata\.plugins\org.eclipse.jdt.core
